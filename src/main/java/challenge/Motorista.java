@@ -1,6 +1,8 @@
 package challenge;
 
 
+import java.util.Objects;
+
 public class Motorista {
 
     private final String nome;
@@ -12,10 +14,14 @@ public class Motorista {
     private final String habilitacao;
 
     private Motorista(String nome, int idade, int pontos, String habilitacao) {
-        this.nome = nome;
-        this.idade = idade;
-        this.pontos = pontos;
-        this.habilitacao = habilitacao;
+        if (nome.isEmpty() || habilitacao.isEmpty()) {
+            throw new EstacionamentoException("ERROR");
+        } else {
+            this.nome = nome;
+            this.idade = idade;
+            this.pontos = pontos;
+            this.habilitacao = habilitacao;
+        }
     }
 
     public String getNome() {

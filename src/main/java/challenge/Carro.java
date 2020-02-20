@@ -1,5 +1,7 @@
 package challenge;
 
+import java.util.Objects;
+
 public class Carro {
 
     private final Motorista motorista;
@@ -9,9 +11,13 @@ public class Carro {
     private final Cor cor;
 
     private Carro(Motorista motorista, String placa, Cor cor) {
-        this.motorista = motorista;
-        this.placa = placa;
-        this.cor = cor;
+        if (placa.isEmpty() || cor.toString().isEmpty()) {
+            throw new EstacionamentoException("ERROR");
+        } else {
+            this.motorista = motorista;
+            this.placa = placa;
+            this.cor = cor;
+        }
     }
 
     public Motorista getMotorista() {
