@@ -14,14 +14,11 @@ public class Motorista {
     private final String habilitacao;
 
     private Motorista(String nome, int idade, int pontos, String habilitacao) {
-        if (nome.isEmpty() || habilitacao.isEmpty()) {
-            throw new EstacionamentoException("ERROR");
-        } else {
-            this.nome = nome;
-            this.idade = idade;
-            this.pontos = pontos;
-            this.habilitacao = habilitacao;
-        }
+        if (nome.isEmpty() || habilitacao.isEmpty()) throw new NullPointerException("Vazio!");
+        this.nome = nome;
+        this.idade = idade;
+        this.pontos = pontos;
+        this.habilitacao = habilitacao;
     }
 
     public String getNome() {
@@ -83,8 +80,7 @@ public class Motorista {
 
         private String habilitacao;
 
-        private MotoristaBuilder() {
-        }
+        private MotoristaBuilder() {}
 
         public MotoristaBuilder withNome(String nome) {
             this.nome = nome;
@@ -92,11 +88,13 @@ public class Motorista {
         }
 
         public MotoristaBuilder withIdade(int idade) {
+            if(idade < 0) throw new IllegalArgumentException("Negativo!");
             this.idade = idade;
             return this;
         }
 
         public MotoristaBuilder withPontos(int pontos) {
+            if(pontos < 0) throw new IllegalArgumentException("Negativo!");
             this.pontos = pontos;
             return this;
         }
